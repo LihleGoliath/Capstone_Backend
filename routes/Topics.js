@@ -21,7 +21,7 @@ router.get("/:id",(req, res) => {
         try {
             con.query(`SELECT * FROM Topics WHERE topic_id = "${req.params.id}"`, (err, result) => {
                 if (err) throw err;
-                res.send(result);
+                JSON.parse
             });
         } catch (error) {
             console.log(error);
@@ -53,8 +53,9 @@ router.post("/",(req,res) => {
     if(req.user.user_type === "admin" ){
         const topic = {
           Topic:req.body.Topic,
-          topic_answers:req.body.topic_answers,
-          date:req.body.date
+          date:req.body.date,
+          for_topic:req.body.for_topic,
+          Against_topic:req.body.Against_topic
         } 
         try {
           let sql = "INSERT INTO Topics SET ?"
@@ -76,8 +77,9 @@ router.patch("/:id",(req,res) => {
     // if(req.user.user_type === "admin" ){
         const topic = {
             Topic:req.body.Topic,
-            topic_answers:req.body.topic_answers,
-            date:req.body.date
+            date:req.body.date,
+            for_topic:req.body.for_topic,
+            Against_topic:req.body.Against_topic
           } 
 
 try {    
@@ -93,6 +95,45 @@ try {
 //     res.send("Not ALLOWED")
 // }
 });
+
+router.put("/:id/for_topic",(req,res) => {
+    // if(req.user.user_type === "admin" ){
+        const topic = {
+            for_topic:req.body.for_topic
+          } 
+try {    
+    con.query(`UPDATE Topics SET ? WHERE topic_id ="${req.params.id}"`,topic, (err, result) => {
+        if (err) throw err;
+        res.send(result);
+    });
+} catch (error) {
+  console.log(error);
+  res.status(400).send(error)
+}
+// }else{
+//     res.send("Not ALLOWED")
+// }
+});
+
+router.put("/:id/Against_topic",(req,res) => {
+    // if(req.user.user_type === "admin" ){
+        const topic = {
+            Against_topic:req.body.Against_topic
+          } 
+try {    
+    con.query(`UPDATE Topics SET ? WHERE topic_id ="${req.params.id}"`,topic, (err, result) => {
+        if (err) throw err.message;
+        res.send(result);
+    });
+} catch (error) {
+  console.log(error);
+  res.status(400).send(error)
+}
+// }else{
+//     res.send("Not ALLOWED")
+// }
+});
+
 
 
 

@@ -16,12 +16,10 @@ router.get("/", (req, res) => {
     }
 });
 
-router.get("/", (req, res) => {
-    const {
-        topic_id
-    }=req.body
+router.get("/topic/:id", (req, res) => {
+
     try {
-        con.query(`SELECT * FROM comments WHERE topic_id = "${topic_id}"`, (err, result) => {
+        con.query(`SELECT * FROM comments WHERE topic_id = "${req.params.id}"`, (err, result) => {
             if (err) throw err;
             res.send(result);
         });
