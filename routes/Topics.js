@@ -34,7 +34,7 @@ router.get("/:id",(req, res) => {
 
 
 router.delete("/:id",middleware,(req, res) => {
-    if (user.user_type === "admin") {
+    // if (user.user_type === "admin") {
         try {
             con.query(`SELECT * FROM Topics WHERE topic_id = "${req.params.id}"`, (err, result) => {
                 if (err) throw err;
@@ -44,13 +44,13 @@ router.delete("/:id",middleware,(req, res) => {
             console.log(error);
             res.status(400).send(error)
         }
-    } else {
-        res.send("Access Denied");
-    }
+    // } else {
+    //     res.send("Access Denied");
+    // }
 });
 
 router.post("/",(req,res) => {
-    if(req.user.user_type === "admin" ){
+    // if(req.user.user_type === "admin" ){
         const topic = {
           Topic:req.body.Topic,
           date:req.body.date,
@@ -67,9 +67,9 @@ router.post("/",(req,res) => {
             console.log(error);
             res.status(400).send(error)
         }
-    }else{
-        res.send("Not ALLOWED")
-    }
+    // }else{
+    //     res.send("Not ALLOWED")
+    // }
 });
 
 
