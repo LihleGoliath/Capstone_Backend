@@ -29,7 +29,7 @@ router.get("/topic/:id", (req, res) => {
     }
 });
 
-router.post("/",middleware,(req,res) => {
+router.post("/",(req,res) => {
  
     try {
         con.query(`SELECT * FROM Topics WHERE topic_id = "${req.body.topic_id}" `, (err, result) => {
