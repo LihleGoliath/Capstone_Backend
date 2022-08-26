@@ -11,7 +11,7 @@ router.get("/",(req, res) => {
         
         try {
             con.query("SELECT * FROM users", (err, result) => {
-                if (err) throw err;
+                if (err)  console.log(err);
                 res.send(result);
             });
         } catch (error) {
@@ -47,7 +47,7 @@ router.post("/register", (req, res) => {
         user_type
       };
       con.query(sql, user, (err, result) => {
-        if (err) throw err;
+        if (err)  console.log(err);
         console.log(result);
         res.send(`User ${(user.Username, user.email)} created successfully`);
       });
@@ -66,7 +66,7 @@ router.post("/register", (req, res) => {
         email: req.body.email,
       };
       con.query(sql, user, async (err, result) => {
-        if (err) throw err;
+        if (err)  console.log(err);
         if (result.length === 0) {
           res.send("Email not found please register");
         } else {
@@ -94,7 +94,7 @@ router.post("/register", (req, res) => {
                 expiresIn: "365d",
               },
               (err, token) => {
-                if (err) throw err;
+                if (err)  console.log(err);
                 res.json({ token });
               }
             );
@@ -127,7 +127,7 @@ router.get("/verify", (req, res) => {
         
         try {
             con.query(`SELECT * FROM users WHERE user_id = "${req.params.id}"`, (err, result) => {
-                if (err) throw err;
+                if (err)  console.log(err);
                 res.send(result);
             });
         } catch (error) {
@@ -144,7 +144,7 @@ router.delete("/:id",middleware,(req, res) => {
     if (user.user_type === "admin") {
         try {
             con.query(`SELECT * FROM users WHERE user_id = "${req.params.id}"`, (err, result) => {
-                if (err) throw err;
+                if (err)  console.log(err);
                 res.send(result);
             });
         } catch (error) {

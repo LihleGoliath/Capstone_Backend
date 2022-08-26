@@ -7,7 +7,7 @@ const middleware = require("../middleware/auth");
 router.get("/", (req, res) => {
     try {
         con.query("SELECT * FROM comments", (err, result) => {
-            if (err) throw err;
+            if (err)  console.log(err);
             res.send(result);
         });
     } catch (error) {
@@ -20,7 +20,7 @@ router.get("/topic/:id", (req, res) => {
 
     try {
         con.query(`SELECT * FROM comments WHERE topic_id = "${req.params.id}"`, (err, result) => {
-            if (err) throw err;
+            if (err)  console.log(err);
             res.send(result);
         });
     } catch (error) {
@@ -33,7 +33,7 @@ router.post("/",(req,res) => {
  
     try {
         con.query(`SELECT * FROM Topics WHERE topic_id = "${req.body.topic_id}" `, (err, result) => {
-            if (err) throw err.message;
+            if (err)  console.log(err);
             if(result === 0){
                 res.send("This topic does not exist!!!")
             }else{
@@ -47,7 +47,7 @@ router.post("/",(req,res) => {
                     let sql = "INSERT INTO comments SET ?"
                     con.query(sql, comment
                       , (err, result) => {
-                        if (err) throw err.message;
+                        if (err)  console.log(err);
                         res.send(result)})
                   } catch (error) {
                       console.log(error);
@@ -65,7 +65,7 @@ router.delete("/:id",(req, res) => {
     // if (user.user_type === "admin") {
         try {
             con.query(`SELECT * FROM comments WHERE comment_id = "${req.params.id}"`, (err, result) => {
-                if (err) throw err;
+                if (err)  console.log(err);
                 res.send(result);
             });
         } catch (error) {

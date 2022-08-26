@@ -16,15 +16,57 @@ const topicsRoute = require("./routes/Topics");
 
 
 
-
 app.get("/", (req, res) => {
+    
+    res.set('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.send(` 
-    <section style="width:100vw;height:100vh;background-color:black;display:flex;justify-content:center;align-items:center;">
-    <h1 style="color:green;font-size:3rem;">Successfully Running {Notice Me}</h1>
+    <section style="width:100vw;height:100vh;background-color:black;display:flex;flex-direction:column;justify-content:center;algin-items:center;">
+    <table style="border:5px solid white;width:fit-content;margin:auto;" >
+  <thead>
+    <tr>
+    <th style="color:white;border:5px solid">Routes</th>
+    </tr>
+   </thead>
+   <tbody>
+     <tr>
+     <td style="color:white;border:5px solid"><a href="http://localhost:8081/topics" style="color:red;">/topics</a></td>
+     </tr>
+     <tr>
+     <td style="color:white;border:5px solid"><a href="http://localhost:8081/comments">/comments</a></td>
+     </tr>
+     <tr>
+     <td style="color:white;border:5px solid"><a href="https://github.com/LihleGoliath/Capstone_Backend" >GitHub-Capstone_Backend</a></td>
+     </tr>
+     <tr>
+     <td style="color:white;border:5px solid"><a href="http://localhost:8081/users" style="color:green;">/users</a></td>
+   </tr>
+   <tr>
+   <td style="color:white;border:5px solid"><a href="http://localhost:8081/LihleGoliath" style="color:yellow;">WaNt TO SeE</a></td>
+ </tr>
+     <tr>
+     </tr>
+  </tbody>
+</table>
+
+
+    
+
+    
+   
+
+    <h1 style="color:green;font-size:3rem;margin:auto;">Successfully Running {Notice Me}</h1>
     </section>
     `)
 
-    res.json({ msg: "Welcome" });
+});
+
+app.get("/LihleGoliath", (req, res) => {
+    res.send(`
+    <section style="width:100vw;height:100vh;background-image: url(${"https://i.postimg.cc/RFY6mdkY/glitch-gc12fec9ea-1920.jpg"});background-size:cover;display:flex;justify-content:center;align-items:center;">
+        <h1 style="color:white;font-size:3rem;border:2px solid white;background-color:black;">Yoh How are U DoInG? U BeEn HaCkEd </h1>
+    </section>
+    `)
 });
 
 app.use("/users",usersRoute);

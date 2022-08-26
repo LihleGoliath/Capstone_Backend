@@ -6,7 +6,7 @@ const middleware = require("../middleware/auth");
 router.get("/", (req, res) => {
     try {
         con.query("SELECT * FROM Topics", (err, result) => {
-            if (err) throw err;
+            if (err)  console.log(err);
             res.send(result);
         });
     } catch (error) {
@@ -17,11 +17,14 @@ router.get("/", (req, res) => {
 
 router.get("/:id",(req, res) => {
     // if (user.user_type === "admin") {
+        res.set('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Origin', '*');
         
         try {
             con.query(`SELECT * FROM Topics WHERE topic_id = "${req.params.id}"`, (err, result) => {
-                if (err) throw err;
-                JSON.parse
+                if (err)  console.log(err);
+                res.send(result)
+
             });
         } catch (error) {
             console.log(error);
@@ -37,7 +40,7 @@ router.delete("/:id",middleware,(req, res) => {
     // if (user.user_type === "admin") {
         try {
             con.query(`SELECT * FROM Topics WHERE topic_id = "${req.params.id}"`, (err, result) => {
-                if (err) throw err;
+                if (err)  console.log(err);
                 res.send(result);
             });
         } catch (error) {
@@ -84,7 +87,7 @@ router.patch("/:id",(req,res) => {
 
 try {    
     con.query(`UPDATE Topics SET ? WHERE topic_id ="${req.params.id}"`,topic, (err, result) => {
-        if (err) throw err.message;
+        if (err)  console.log(err);
         res.send(result);
     });
 } catch (error) {
@@ -103,7 +106,7 @@ router.put("/:id/for_topic",(req,res) => {
           } 
 try {    
     con.query(`UPDATE Topics SET ? WHERE topic_id ="${req.params.id}"`,topic, (err, result) => {
-        if (err) throw err;
+        if (err)  console.log(err);
         res.send(result);
     });
 } catch (error) {
@@ -122,7 +125,7 @@ router.put("/:id/Against_topic",(req,res) => {
           } 
 try {    
     con.query(`UPDATE Topics SET ? WHERE topic_id ="${req.params.id}"`,topic, (err, result) => {
-        if (err) throw err.message;
+        if (err)  console.log(err);
         res.send(result);
     });
 } catch (error) {
