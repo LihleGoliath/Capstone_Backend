@@ -30,19 +30,19 @@ app.get("/", (req, res) => {
    </thead>
    <tbody>
      <tr>
-     <td style="color:white;border:5px solid"><a href="http://localhost:8081/topics" style="color:red;">/topics</a></td>
+     <td style="color:white;border:5px solid"><a href="https://capstone-debate.herokuapp.com/topics" style="color:red;">/topics</a></td>
      </tr>
      <tr>
-     <td style="color:white;border:5px solid"><a href="http://localhost:8081/comments">/comments</a></td>
+     <td style="color:white;border:5px solid"><a href="https://capstone-debate.herokuapp.com/comments">/comments</a></td>
      </tr>
      <tr>
      <td style="color:white;border:5px solid"><a href="https://github.com/LihleGoliath/Capstone_Backend" >GitHub-Capstone_Backend</a></td>
      </tr>
      <tr>
-     <td style="color:white;border:5px solid"><a href="http://localhost:8081/users" style="color:green;">/users</a></td>
+     <td style="color:white;border:5px solid"><a href="https://capstone-debate.herokuapp.com/users" style="color:green;">/users</a></td>
    </tr>
    <tr>
-   <td style="color:white;border:5px solid"><a href="http://localhost:8081/LihleGoliath" style="color:yellow;">WaNt TO SeE</a></td>
+   <td style="color:white;border:5px solid"><a href="https://capstone-debate.herokuapp.com/LihleGoliath" style="color:yellow;">WaNt TO SeE</a></td>
  </tr>
      <tr>
      </tr>

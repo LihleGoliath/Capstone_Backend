@@ -32,7 +32,8 @@ router.post("/register", (req, res) => {
         Username,
         email,
         password,
-        user_type
+        user_type,
+        user_image
       } = req.body;
   
       // The start of hashing / encryption
@@ -44,7 +45,8 @@ router.post("/register", (req, res) => {
         email,
         // We sending the hash value to be stored within the table
         password:hash,
-        user_type
+        user_type,
+        user_image:req.body.user_image
       };
       con.query(sql, user, (err, result) => {
         if (err)  console.log(err);
@@ -84,6 +86,7 @@ router.post("/register", (req, res) => {
                 Username: result[0].Username,
                 email: result[0].email,
                 user_type: result[0].user_type,
+                user_image:result[0].user_image
               },
             };
             // Creating a token and setting expiry date
@@ -156,6 +159,21 @@ router.delete("/:id",middleware,(req, res) => {
     }
 });
 
+router.patch("/:id",(req, res) => {
+  const user={
+    user_image:req.body.user_image
+  }
+      try {
+          con.query(`UPDATE users SET ? WHERE user_id ="${req.params.id}"`,user, (err, result) => {
+              if (err)  console.log(err);
+              res.send(result);
+          });
+      } catch (error) {
+          console.log(error);
+          res.status(400).send(error)
+      }
+
+});
 
 
 module.exports = router;
