@@ -15,7 +15,17 @@ router.get("/", (req, res) => {
         res.status(400).send(error)
     }
 });
-
+router.get("/view", (req, res) => {
+    try {
+        con.query("SELECT * FROM comment_view", (err, result) => {
+            if (err)  console.log(err);
+            res.send(result);
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error)
+    }
+});
 router.get("/topic/:id", (req, res) => {
 
     try {
