@@ -161,6 +161,7 @@ router.delete("/:id",middleware,(req, res) => {
 
 router.patch("/:id",(req, res) => {
   const user={
+    Username:req.body.Username,
     user_image:req.body.user_image
   }
       try {
