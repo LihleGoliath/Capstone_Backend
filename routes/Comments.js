@@ -29,7 +29,7 @@ router.get("/view", (req, res) => {
 router.get("/topic/:id", (req, res) => {
 
     try {
-        con.query(`SELECT * FROM comments WHERE topic_id = "${req.params.id}"`, (err, result) => {
+        con.query(`SELECT * FROM comment_view1 WHERE topic_id = "${req.params.id}"`, (err, result) => {
             if (err)  console.log(err);
             res.send(result);
         });
