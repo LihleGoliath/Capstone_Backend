@@ -71,10 +71,10 @@ router.post("/",(req,res) => {
     }
 });
 
-router.delete("/:id",(req, res) => {
-    // if (user.user_type === "admin") {
+router.delete("/:id",middleware,(req, res) => {
+    if (req.user.user_type === "admin") {
         try {
-            con.query(`SELECT * FROM comments WHERE comment_id = "${req.params.id}"`, (err, result) => {
+            con.query(`DELETE FROM comments WHERE comment_id = "${req.params.id}"`, (err, result) => {
                 if (err)  console.log(err);
                 res.send(result);
             });
@@ -82,9 +82,9 @@ router.delete("/:id",(req, res) => {
             console.log(error);
             res.status(400).send(error)
         }
-    // } else {
-    //     res.send("Access Denied");
-    // }
+    } else {
+        res.send("Access Denied");
+    }
 });
 
 module.exports = router;

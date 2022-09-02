@@ -37,9 +37,9 @@ router.get("/:id",(req, res) => {
 
 
 router.delete("/:id",middleware,(req, res) => {
-    // if (user.user_type === "admin") {
+    if (req.user.user_type === 'admin') {
         try {
-            con.query(`SELECT * FROM Topics WHERE topic_id = "${req.params.id}"`, (err, result) => {
+            con.query(`DELETE FROM Topics WHERE topic_id = "${req.params.id}"`, (err, result) => {
                 if (err)  console.log(err);
                 res.send(result);
             });
@@ -47,9 +47,9 @@ router.delete("/:id",middleware,(req, res) => {
             console.log(error);
             res.status(400).send(error)
         }
-    // } else {
-    //     res.send("Access Denied");
-    // }
+    } else {
+        res.send("Access Denied");
+    }
 });
 
 router.post("/",(req,res) => {
