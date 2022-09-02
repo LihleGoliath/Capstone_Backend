@@ -126,7 +126,7 @@ router.get("/verify", (req, res) => {
 
 
   router.get("/:id",middleware,(req, res) => {
-    if (user.user_type === "admin") {
+    if (req.user.user_type === "admin") {
         
         try {
             con.query(`SELECT * FROM users WHERE user_id = "${req.params.id}"`, (err, result) => {
@@ -144,9 +144,9 @@ router.get("/verify", (req, res) => {
 
 
 router.delete("/:id",middleware,(req, res) => {
-    if (user.user_type === "admin") {
+    if (req.user.user_type === 'admin') {
         try {
-            con.query(`SELECT * FROM users WHERE user_id = "${req.params.id}"`, (err, result) => {
+            con.query(`DELETE FROM users WHERE user_id = "${req.params.id}"`, (err, result) => {
                 if (err)  console.log(err);
                 res.send(result);
             });
