@@ -65,7 +65,7 @@ router.post("/register", (req, res) => {
             console.log(error);
           }
         } else {
-          res.send(JSON.stringify("Email not found please register"));
+          res.send(JSON.stringify("Email Already Exists In Database"));
         }});
 } catch (error) {
     console.log(error);
