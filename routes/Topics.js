@@ -79,10 +79,7 @@ router.post("/",(req,res) => {
 router.patch("/:id",(req,res) => {
     // if(req.user.user_type === "admin" ){
         const topic = {
-            Topic:req.body.Topic,
-            date:req.body.date,
-            for_topic:req.body.for_topic,
-            Against_topic:req.body.Against_topic
+            Topic:req.body.Topic
           } 
 
 try {    
