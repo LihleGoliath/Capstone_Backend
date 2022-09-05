@@ -26,36 +26,51 @@ router.get("/",(req, res) => {
 // Register Route
 // The Route where Encryption starts
 router.post("/register", (req, res) => {
-    try {
-      let sql = "INSERT INTO users SET ?";
-      const {
-        Username,
-        email,
-        password,
-        user_type,
-        user_image
-      } = req.body;
-  
-      // The start of hashing / encryption
-      const salt = bcrypt.genSaltSync(10);
-      const hash = bcrypt.hashSync(password, salt);
-  
+  try {
+      let sql = "SELECT * FROM users WHERE ?";
       let user = {
-        Username,
-        email,
-        // We sending the hash value to be stored within the table
-        password:hash,
-        user_type,
-        user_image:req.body.user_image
+        email: req.body.email,
       };
-      con.query(sql, user, (err, result) => {
+      con.query(sql, user, async (err, result) => {
         if (err)  console.log(err);
-        console.log(result);
-        res.send(`User ${(user.Username, user.email)} created successfully`);
-      });
-    } catch (error) {
-      console.log(error);
-    }
+        if (result.length === 0) {
+          try {
+            let sql = "INSERT INTO users SET ?";
+            const {
+              Username,
+              email,
+              password,
+              user_type,
+              user_image
+            } = req.body;
+        
+            // The start of hashing / encryption
+            const salt = bcrypt.genSaltSync(10);
+            const hash = bcrypt.hashSync(password, salt);
+        
+            let user = {
+              Username,
+              email,
+              // We sending the hash value to be stored within the table
+              password:hash,
+              user_type,
+              user_image:req.body.user_image
+            };
+            con.query(sql, user, (err, result) => {
+              if (err)  console.log(err);
+              console.log(result);
+              res.send('User registered');
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          res.send(JSON.stringify("Email not found please register"));
+        }});
+} catch (error) {
+    console.log(error);
+  }
+
   });
   
   
@@ -70,14 +85,14 @@ router.post("/register", (req, res) => {
       con.query(sql, user, async (err, result) => {
         if (err)  console.log(err);
         if (result.length === 0) {
-          res.send("Email not found please register");
+          res.send(JSON.stringify("Email not found please register"));
         } else {
           const isMatch = await bcrypt.compare(
             req.body.password,
             result[0].password
           );
           if (!isMatch) {
-            res.send("Password incorrect");
+            res.send(JSON.stringify("Password incorrect"));
           } else {
             // The information the should be stored inside token
             const payload = {
