@@ -12,6 +12,7 @@ router.get("/",(req, res) => {
         try {
             con.query("SELECT * FROM users", (err, result) => {
                 if (err)  console.log(err);
+                res.status(200);
                 res.send(result);
             });
         } catch (error) {
@@ -59,7 +60,8 @@ router.post("/register", (req, res) => {
             con.query(sql, user, (err, result) => {
               if (err)  console.log(err);
               console.log(result);
-              res.send('User registered');
+              res.status(200);
+              res.send(JSON.stringify("User registered"));
             });
           } catch (error) {
             console.log(error);
@@ -68,7 +70,8 @@ router.post("/register", (req, res) => {
           res.send(JSON.stringify("Email Already Exists In Database"));
         }});
 } catch (error) {
-    console.log(error);
+  console.log(error);
+  res.status(400).send(error)
   }
 
   });
@@ -113,6 +116,7 @@ router.post("/register", (req, res) => {
               },
               (err, token) => {
                 if (err)  console.log(err);
+                res.status(200);
                 res.json({ token });
               }
             );
@@ -121,6 +125,7 @@ router.post("/register", (req, res) => {
       });
     } catch (error) {
       console.log(error);
+      res.status(400).send(error)
     }
 });
 
