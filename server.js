@@ -21,33 +21,42 @@ app.get("/", (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.send(` 
+ 
     <section style="width:100vw;height:100vh;background-color:black;display:flex;flex-direction:column;justify-content:center;algin-items:center;">
-    <table style="border:5px solid white;width:fit-content;margin:auto;" >
+    <table style="border:5px solid green;width:fit-content;margin:auto;" >
   <thead>
     <tr>
-    <th style="color:white;border:5px solid">Routes</th>
+    <th style="color:white;border-bottom:5px solid; font-size:3rem">Routes</th>
     </tr>
    </thead>
    <tbody>
      <tr>
-     <td style="color:white;border:5px solid"><a href="https://capstone-debate.herokuapp.com/topics" style="color:red;">/topics</a></td>
+     <td class="Link" style="color:white;border-bottom:2px solid white;" ><a href="https://capstone-debate.herokuapp.com/topics" style="color:white;font-size:2rem;">/topics</a></td>
      </tr>
      <tr>
-     <td style="color:white;border:5px solid"><a href="https://capstone-debate.herokuapp.com/comments">/comments</a></td>
+     <td class="Link" style="color:white;border-bottom:2px solid white;" ><a href="https://capstone-debate.herokuapp.com/topics/2" style="color:white;font-size:2rem;">/topics/:id</a></td>
      </tr>
      <tr>
-     <td style="color:white;border:5px solid"><a href="https://github.com/LihleGoliath/Capstone_Backend" >GitHub-Capstone_Backend</a></td>
+     <td style="color:white;border-bottom:2px solid white;"><a href="https://capstone-debate.herokuapp.com/comments" style="color:white;font-size:2rem;">/comments</a></td>
      </tr>
+
      <tr>
-     <td style="color:white;border:5px solid"><a href="https://capstone-debate.herokuapp.com/users" style="color:green;">/users</a></td>
+     <td style="color:white;border-bottom:2px solid white;"><a href="https://capstone-debate.herokuapp.com/users" style="color:white;font-size:2rem;">/users</a></td>
    </tr>
    <tr>
-   <td style="color:white;border:5px solid"><a href="https://capstone-debate.herokuapp.com/LihleGoliath" style="color:yellow;">WaNt TO SeE</a></td>
+   <td style="color:white;border-bottom:2px solid white;"><a href="https://capstone-debate.herokuapp.com/users/3" style="color:white;font-size:2rem;">/users/:id</a></td>
+   <tr>
+   <td style="color:white;border-bottom:2px solid white;"><a href="https://github.com/LihleGoliath/Capstone_Backend" style="color:white;font-size:2rem;">GitHub-Capstone_Backend</a></td>
+   </tr>
+ </tr>
+   <tr>
+   <td style="color:white;border:2px solid green"><a href="https://capstone-debate.herokuapp.com/LihleGoliath" style="color:yellow;font-size:2rem;">WaNt TO SeE</a></td>
  </tr>
      <tr>
      </tr>
   </tbody>
 </table>
+
 
 
     
@@ -57,6 +66,7 @@ app.get("/", (req, res) => {
 
     <h1 style="color:green;font-size:3rem;margin:auto;">Successfully Running {Notice Me}</h1>
     </section>
+
     `)
 
 });

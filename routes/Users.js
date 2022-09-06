@@ -76,7 +76,7 @@ router.post("/register", (req, res) => {
   
   // Login
   // The Route where Decryption happens
-  router.post("/login", (req, res) => {
+  router.patch("/login", (req, res) => {
     try {
       let sql = "SELECT * FROM users WHERE ?";
       let user = {
