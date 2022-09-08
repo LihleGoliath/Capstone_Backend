@@ -164,7 +164,7 @@ router.get("/verify", (req, res) => {
 
 
 router.delete("/:id",middleware,(req, res) => {
-    if (req.user.user_type === 'admin') {
+    if (req.user.user_type === 'admin' || req.user.user_id === req.params.id ) {
         try {
             con.query(`DELETE FROM users WHERE user_id = "${req.params.id}"`, (err, result) => {
                 if (err)  console.log(err);
@@ -180,6 +180,7 @@ router.delete("/:id",middleware,(req, res) => {
 });
 
 router.put("/:id",(req, res) => {
+  if(req.user.user_id === req.params.id){
   const user={
     Username:req.body.Username,
     user_image:req.body.user_image
@@ -193,7 +194,9 @@ router.put("/:id",(req, res) => {
           console.log(error);
           res.status(400).send(error)
       }
-
+    } else {
+      res.send("Access Denied");
+  }
 });
 
 
