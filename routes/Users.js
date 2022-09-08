@@ -164,7 +164,7 @@ router.get("/verify", (req, res) => {
 
 
 router.delete("/:id",middleware,(req, res) => {
-    if (req.user.user_type === 'admin' || req.user.user_id === req.params.id ) {
+    if (req.user.user_type === 'admin' || req.user.user_id == req.params.id ) {
         try {
             con.query(`DELETE FROM users WHERE user_id = "${req.params.id}"`, (err, result) => {
                 if (err)  console.log(err);
