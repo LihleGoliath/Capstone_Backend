@@ -180,7 +180,7 @@ router.delete("/:id",middleware,(req, res) => {
 });
 
 router.put("/:id",middleware,(req, res) => {
-  if(req.user.user_id === req.params.id){
+  if(req.user.user_id == req.params.id){
   const user={
     Username:req.body.Username,
     user_image:req.body.user_image
