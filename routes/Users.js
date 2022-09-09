@@ -179,14 +179,14 @@ router.delete("/:id",middleware,(req, res) => {
     }
 });
 
-router.put("/:id",(req, res) => {
+router.put("/:id",middleware,(req, res) => {
   if(req.user.user_id === req.params.id){
   const user={
     Username:req.body.Username,
     user_image:req.body.user_image
   }
       try {
-          con.query(`UPDATE users SET ? WHERE user_id ="${req.params.id}"`,user, (err, result) => {
+          con.query(`UPDATE users SET ? WHERE user_id = "${req.params.id}"`,user, (err, result) => {
               if (err)  console.log(err);
               res.send(result);
           });
